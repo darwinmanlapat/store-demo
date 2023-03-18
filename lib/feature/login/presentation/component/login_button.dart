@@ -8,6 +8,7 @@ class LoginButton extends HookWidget {
       this.width,
       this.height,
       this.isLoading,
+      this.isEmpty,
       super.key});
 
   final String label;
@@ -15,7 +16,7 @@ class LoginButton extends HookWidget {
   final double? width;
   final double? height;
   final bool? isLoading;
-
+  final bool? isEmpty;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,7 +25,7 @@ class LoginButton extends HookWidget {
         width: width,
         height: height ?? 48,
         child: Opacity(
-          opacity: isLoading ?? false ? 0.5 : 1,
+          opacity: isEmpty ?? isLoading ?? false ? 0.5 : 1,
           child: DecoratedBox(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),

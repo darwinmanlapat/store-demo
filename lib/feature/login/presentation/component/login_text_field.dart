@@ -8,11 +8,13 @@ class LoginTextField extends HookWidget {
       required this.keyboardType,
       required this.labelText,
       required this.onChanged,
+      required this.inputText,
       this.inputFormatters,
       super.key});
 
   final bool obscureText;
   final String labelText;
+  final String inputText;
   final TextInputType keyboardType;
   final void Function(String) onChanged;
   final List<TextInputFormatter>? inputFormatters;
@@ -20,23 +22,32 @@ class LoginTextField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final focusNode = useFocusNode();
+    final controller = useTextEditingController(text: '');
     final inputTextColor = useState(const Color(0xFF4A4A4A));
 
-    useEffect(() {
-      focusNode.addListener(() {
-        if (focusNode.hasFocus) {
-          inputTextColor.value = const Color(0xFF05B89D);
-        } else {
-          inputTextColor.value = const Color(0xFF4A4A4A);
+    useEffect(
+      () {
+        focusNode.addListener(() {
+          if (focusNode.hasFocus) {
+            inputTextColor.value = const Color(0xFF05B89D);
+          } else {
+            inputTextColor.value = const Color(0xFF4A4A4A);
+          }
+        });
+
+        if (inputText.isEmpty) {
+          controller.text = '';
         }
-      });
-      return null;
-    }, [focusNode]);
+        return null;
+      },
+    );
 
     return TextFormField(
+      controller: controller,
       focusNode: focusNode,
       obscureText: obscureText,
       keyboardType: keyboardType,
+      onChanged: onChanged,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
         labelText: labelText,
@@ -62,13 +73,6 @@ class LoginTextField extends HookWidget {
         fontSize: 14,
         color: inputTextColor.value,
       ),
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Please enter your $labelText';
-        }
-        return null;
-      },
-      onChanged: onChanged,
     );
   }
 }

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:store_demo/common/widget/widget.dart';
 import 'package:store_demo/feature/login/presentation/component/component.dart';
+import 'package:store_demo/feature/login/presentation/view_model/login_provider.dart';
 
 class LoginScreen extends HookConsumerWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loginNotifier = ref.read(loginProvider.notifier);
+    final loginState = ref.watch(loginProvider);
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -62,6 +66,12 @@ class LoginScreen extends HookConsumerWidget {
                         Color(0xFF404453),
                       ]),
                     ),
+                    if (loginState.loginError != null) ...[
+                      const SizedBox(height: 24),
+                      LoginErrorMessage(
+                        message: loginState.loginError!,
+                      )
+                    ],
                     const SizedBox(height: 24),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -69,18 +79,25 @@ class LoginScreen extends HookConsumerWidget {
                         LoginTextField(
                           keyboardType: TextInputType.text,
                           labelText: 'Username',
-                          onChanged: (value) {},
+                          onChanged: loginNotifier.onUsernameChange,
+                          inputText: loginState.username,
                         ),
                         const SizedBox(height: 16.0),
                         LoginTextField(
                           obscureText: true,
                           keyboardType: TextInputType.text,
                           labelText: 'Password',
-                          onChanged: (value) {},
+                          onChanged: loginNotifier.onPasswordChange,
+                          inputText: loginState.password,
                         ),
                         const SizedBox(height: 16.0),
-                        const LoginButton(
+                        LoginButton(
                           label: 'Login',
+                          isEmpty: loginState.password.isEmpty ||
+                              loginState.username.isEmpty ||
+                              loginState.isLoading,
+                          isLoading: loginState.isLoading,
+                          onPressed: () => loginNotifier.login(() {}),
                         )
                       ],
                     ),
