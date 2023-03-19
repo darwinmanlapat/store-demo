@@ -62,13 +62,11 @@ class LoginNotifier extends StateNotifier<LoginModel> {
         username: state.username,
         password: state.password,
       );
-      print(isAuth);
       if (isAuth) {
         state = const LoginModel.initial();
         callback();
       }
     } catch (e) {
-      print(e);
       state = state.copyWith(
         isLoading: false,
         loginError: 'Invalid Credentials. Failed to login.',

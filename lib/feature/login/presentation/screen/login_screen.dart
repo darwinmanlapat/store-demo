@@ -1,5 +1,7 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:store_demo/common/route/locations/locations.dart';
 import 'package:store_demo/common/widget/widget.dart';
 import 'package:store_demo/feature/login/presentation/component/component.dart';
 import 'package:store_demo/feature/login/presentation/view_model/login_provider.dart';
@@ -97,7 +99,9 @@ class LoginScreen extends HookConsumerWidget {
                               loginState.username.isEmpty ||
                               loginState.isLoading,
                           isLoading: loginState.isLoading,
-                          onPressed: () => loginNotifier.login(() {}),
+                          onPressed: () => loginNotifier.login(() {
+                            Beamer.of(context).beamToNamed(HomeLocation.route);
+                          }),
                         )
                       ],
                     ),

@@ -22,6 +22,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
     if (result != null) {
       await _localSource.storeAccessToken(result);
+      await _localSource.storeAuthentication(true);
       return true;
     }
 
@@ -31,5 +32,6 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<void> logout() async {
     await _localSource.deleteAccessToken();
+    await _localSource.deleteAuthentication();
   }
 }

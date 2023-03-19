@@ -4,6 +4,7 @@ import 'package:store_demo/feature/login/data/local/login_local_source.dart';
 
 final loginLocalSourceDI = Provider((ref) {
   final secureStorageService = ref.read(secureStorageServiceProvider.notifier);
+  final localStorageService = ref.read(localStorageServiceProvider.notifier);
 
-  return LoginLocalSource(secureStorageService);
+  return LoginLocalSource(secureStorageService, localStorageService);
 });

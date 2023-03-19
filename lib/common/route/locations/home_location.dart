@@ -1,18 +1,18 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:store_demo/feature/login/presentation/screen/login_screen.dart';
+import 'package:store_demo/feature/home/presentation/screen/screen.dart';
 
-class LoginLocation extends BeamLocation<BeamState> {
-  static const route = '/login';
+class HomeLocation extends BeamLocation<BeamState> {
+  static const route = '/home';
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     return [
       const BeamPage(
-        key: ValueKey('login'),
-        name: 'Login',
-        title: 'Login',
-        child: LoginScreen(),
+        key: ValueKey('home'),
+        name: 'Home',
+        title: 'Home',
+        child: HomeScreen(),
       )
     ];
   }
