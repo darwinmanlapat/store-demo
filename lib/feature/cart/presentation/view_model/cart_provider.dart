@@ -30,27 +30,6 @@ class CartNotifier extends AsyncCart {
     state = await AsyncValue.guard(
       () async => repository.getCart(),
     );
-
-    // final products = cartProducts.map((cart) async {
-    //   final product = await productNotifier.getProductById(cart.productId);
-    //   return product;
-    // });
-
-    // List<ProductModel> productModels =
-    //     await Future.wait(products).then((product) {
-    //   return product.whereType<ProductModel>().toList();
-    // });
-
-    // print(products);
-
-    // for (Future<ProductModel> product in products!) {
-    //   ProductModel result = await product;
-    //   print(result);
-    // }
-
-    // state = AsyncData(
-    //   state.requireValue.copyWith(parsedProducts: []),
-    // );
   }
 }
 

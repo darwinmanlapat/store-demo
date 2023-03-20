@@ -143,7 +143,7 @@ class ProductScreen extends HookConsumerWidget {
                         isButtonClicked.value = false;
                         const snackBar = SnackBar(
                           content: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 24),
+                            padding: EdgeInsets.only(top: 12),
                             child: Text('Item added to cart'),
                           ),
                           backgroundColor: Color(0xFF404453),
