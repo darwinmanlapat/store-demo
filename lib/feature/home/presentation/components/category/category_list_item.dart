@@ -33,7 +33,10 @@ class CategoryListItem extends StatelessWidget {
                     const Color(0xFF36CFA2),
                     const Color(0xFF05B89D),
                   ]
-                : [Colors.white, Colors.white],
+                : [
+                    Colors.white,
+                    Colors.white,
+                  ],
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(8),

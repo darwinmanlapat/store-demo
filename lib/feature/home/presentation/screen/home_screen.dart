@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:store_demo/feature/home/presentation/components/category/category_list.dart';
+import 'package:store_demo/feature/home/presentation/components/product/product.dart';
 import 'package:store_demo/feature/home/presentation/view_model/view_model.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -27,20 +28,35 @@ class HomeScreen extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
-            children: const [
-              SizedBox(
+            children: [
+              Container(
                 width: double.infinity,
                 height: 240,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Color(0xFF404453),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage('assets/woman-with-shopping-bags.jpg'),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xB3404453),
+                      blurRadius: 2,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                    Color(0x4D404453),
+                    Color(0xB3404453),
+                  ])),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 left: 24,
                 right: 0,
-                top: 80,
+                top: 100,
                 child: Text(
                   'SHOP NOW',
                   style: TextStyle(
@@ -51,14 +67,20 @@ class HomeScreen extends HookConsumerWidget {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 left: 0,
                 right: 0,
                 bottom: 20,
                 child: CategoryList(),
               )
             ],
-          )
+          ),
+          const SizedBox(height: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: ProductsGrid(),
+          ),
+          const SizedBox(height: 100),
         ],
       ),
     );

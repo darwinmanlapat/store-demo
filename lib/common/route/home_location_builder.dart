@@ -5,5 +5,6 @@ final homeLocationBuilder = BeamerLocationBuilder(
   beamLocations: [
     HomeLocation(),
     CartLocation(),
+    SettingsLocation(),
   ],
 );

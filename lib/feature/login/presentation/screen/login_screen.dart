@@ -100,7 +100,8 @@ class LoginScreen extends HookConsumerWidget {
                               loginState.isLoading,
                           isLoading: loginState.isLoading,
                           onPressed: () => loginNotifier.login(() {
-                            Beamer.of(context).beamToNamed(HomeLocation.route);
+                            Beamer.of(context)
+                                .beamToNamed(HomeWrapperLocation.route);
                           }),
                         )
                       ],

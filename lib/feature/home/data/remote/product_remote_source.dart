@@ -25,4 +25,50 @@ class ProductRemoteSource {
       throw Exception(e);
     }
   }
+
+  Future<List<ProductModel>> getProductsByCategory(String? category) async {
+    try {
+      String route = '';
+
+      if (category != null) {
+        route = 'category/$category';
+      }
+
+      if (category == 'all') {
+        route = '';
+      }
+
+      final response =
+          await _httpClient.get('https://fakestoreapi.com/products/$route',
+              options: Options(
+                contentType: Headers.formUrlEncodedContentType,
+              ));
+
+      final data = response.data as List<dynamic>;
+      final values = data.map(
+        (dynamic item) => ProductModel.fromJson(item as Map<String, dynamic>),
+      );
+
+      return values.toList();
+    } on DioError catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<ProductModel> getProductById(int id) async {
+    try {
+      final response =
+          await _httpClient.get('https://fakestoreapi.com/products/$id',
+              options: Options(
+                contentType: Headers.formUrlEncodedContentType,
+              ));
+
+      final data = response.data as Map<String, dynamic>;
+      final values = ProductModel.fromJson(data);
+
+      return values;
+    } on DioError catch (e) {
+      throw Exception(e);
+    }
+  }
 }

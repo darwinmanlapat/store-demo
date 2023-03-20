@@ -6,6 +6,30 @@ class CartScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('cart page'));
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Cart',
+          style: TextStyle(
+            fontFamily: 'Clear Sans',
+            fontSize: 32,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF404453),
+          ),
+        ),
+        centerTitle: false,
+        elevation: 0,
+        backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: const [],
+          ),
+        ),
+      ),
+    );
   }
 }

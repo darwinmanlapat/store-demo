@@ -30,6 +30,10 @@ class CategoryNotifier extends AsyncProductCategoryList {
       () async => repository.getProductCategories(),
     );
   }
+
+  Future<void> setCategory(String category) async {
+    state = AsyncData(state.requireValue.copyWith(selectedCategory: category));
+  }
 }
 
 typedef AsyncProductCategoryList = StateNotifier<AsyncValue<CategoryModel>>;

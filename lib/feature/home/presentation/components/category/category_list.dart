@@ -19,10 +19,11 @@ class CategoryList extends HookConsumerWidget {
     ];
 
     final isActiveIndex = useState(0);
-    final notifier = ref.read(staticItemProvider.notifier);
-    final provider = ref.watch(categoryProvider);
+    final staticItemNotifier = ref.read(staticItemProvider.notifier);
+    final categoryStateProvider = ref.watch(categoryProvider);
+    final categoryNotifier = ref.read(categoryProvider.notifier);
 
-    return provider.when(
+    return categoryStateProvider.when(
       data: (data) {
         final categoryList = data.categories;
         final itemCount = categoryList.length;
@@ -43,7 +44,8 @@ class CategoryList extends HookConsumerWidget {
                 marginRight: index == 4 ? 24.0 : 8.0,
                 onTap: () {
                   isActiveIndex.value = index;
-                  notifier.onChanged(staticIndicator[index]);
+                  staticItemNotifier.onChanged(staticIndicator[index]);
+                  categoryNotifier.setCategory(categoryList[index]);
                 },
                 isActive: isActive,
               );

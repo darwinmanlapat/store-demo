@@ -5,5 +5,6 @@ final rootLocationBuilder = BeamerLocationBuilder(
   beamLocations: [
     LoginLocation(),
     HomeWrapperLocation(),
+    ProductLocation(),
   ],
 );

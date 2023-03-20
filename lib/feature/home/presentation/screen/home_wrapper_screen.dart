@@ -11,6 +11,8 @@ class HomeWrapperScreen extends HookConsumerWidget {
 
   late final _routerDelegate = BeamerDelegate(
     initialPath: HomeLocation.route,
+    transitionDelegate: const NoAnimationTransitionDelegate(),
+    beamBackTransitionDelegate: const NoAnimationTransitionDelegate(),
     updateParent: false,
     locationBuilder: homeLocationBuilder,
   );
@@ -25,18 +27,6 @@ class HomeWrapperScreen extends HookConsumerWidget {
         return true;
       },
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: SizedBox(
-        //     height: 40,
-        //     width: 40,
-        //     child: Image.asset('assets/shopping-cart.png'),
-        //   ),
-        //   centerTitle: false,
-        //   automaticallyImplyLeading: false,
-        //   elevation: 0,
-        //   backgroundColor: const Color(0xFF404453),
-        // ),
-        bottomNavigationBar: BottomNavBar(_beamerKey),
         body: Stack(
           children: [
             Beamer(
@@ -44,6 +34,12 @@ class HomeWrapperScreen extends HookConsumerWidget {
               routerDelegate: _routerDelegate,
               backButtonDispatcher:
                   BeamerBackButtonDispatcher(delegate: _routerDelegate),
+            ),
+            Positioned(
+              left: 40,
+              right: 40,
+              bottom: 20,
+              child: BottomNavBar(_beamerKey),
             ),
           ],
         ),
@@ -83,62 +79,58 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     _currentIndex = () {
-      if (_beamerDelegate.currentBeamLocation is LoginLocation) {
+      if (_beamerDelegate.currentBeamLocation is CartLocation) {
         return 0;
       } else if (_beamerDelegate.currentBeamLocation is HomeLocation) {
         return 1;
-      } else if (_beamerDelegate.currentBeamLocation is CartLocation) {
+      } else if (_beamerDelegate.currentBeamLocation is SettingsLocation) {
         return 2;
       }
     }();
 
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 40,
-        right: 40,
-        bottom: 20,
-      ),
-      child: SizedBox(
-        width: double.infinity,
-        height: 72,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: const Color(0xFF404453),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                onTap: () => _beamerDelegate.beamToNamed(LoginLocation.route),
-                child: _currentIndex == 0
-                    ? Icon(
-                        Icons.search_outlined,
-                        color: Colors.green.shade400,
-                      )
-                    : const Icon(Icons.search_outlined, color: Colors.white),
-              ),
-              GestureDetector(
-                onTap: () => _beamerDelegate.beamToNamed(HomeLocation.route),
-                child: _currentIndex == 1
-                    ? Icon(
-                        Icons.home_outlined,
-                        color: Colors.green.shade400,
-                      )
-                    : const Icon(Icons.home_outlined, color: Colors.white),
-              ),
-              GestureDetector(
-                onTap: () => _beamerDelegate.beamToNamed(CartLocation.route),
-                child: _currentIndex == 2
-                    ? Icon(
-                        Icons.shopping_cart_outlined,
-                        color: Colors.green.shade400,
-                      )
-                    : const Icon(Icons.shopping_cart_outlined,
-                        color: Colors.white),
-              ),
-            ],
-          ),
+    return SizedBox(
+      width: double.infinity,
+      height: 72,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: const Color(0xFF404453),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () => _beamerDelegate.beamToNamed(CartLocation.route),
+              child: _currentIndex == 0
+                  ? const Icon(
+                      Icons.shopping_cart_outlined,
+                      color: Color(0xFF05B89D),
+                    )
+                  : const Icon(Icons.shopping_cart_outlined,
+                      color: Colors.white),
+            ),
+            GestureDetector(
+              onTap: () => _beamerDelegate.beamToNamed(HomeLocation.route),
+              child: _currentIndex == 1
+                  ? const Icon(
+                      Icons.home_outlined,
+                      color: Color(0xFF05B89D),
+                    )
+                  : const Icon(Icons.home_outlined, color: Colors.white),
+            ),
+            GestureDetector(
+              onTap: () => _beamerDelegate.beamToNamed(SettingsLocation.route),
+              child: _currentIndex == 2
+                  ? const Icon(
+                      Icons.settings_outlined,
+                      color: Color(0xFF05B89D),
+                    )
+                  : const Icon(
+                      Icons.settings_outlined,
+                      color: Colors.white,
+                    ),
+            ),
+          ],
         ),
       ),
     );
