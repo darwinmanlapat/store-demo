@@ -1,5 +1,7 @@
 # **Table of contents**
 
+<br>
+
 ## **Dependency**
 
 | **DEPENDENCY** | **VERSION** |
@@ -9,7 +11,7 @@
 | Xcode          | 14.2        |
 | Android Studio | 11.0+13     |
 
-<br><hr><br>
+<br>
 
 ## **Tech Stack**
 
@@ -31,7 +33,7 @@
 - shimmer: ^2.0.0 <br>
 - flutter_staggered_grid_view: ^0.6.2 <br>
 
-<br><hr><br>
+<br>
 
 ## **Setting Up Dev Local Environment**
 
@@ -45,7 +47,7 @@
 - username: mor_2314
 - password: 83r5^_
 
-<br><hr><br>
+<br>
 
 ## **Folder Structure**
 
