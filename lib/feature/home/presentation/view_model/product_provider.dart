@@ -22,12 +22,14 @@ class ProductNotifier extends AsyncProduct {
   final ProductRepository repository;
   final Ref ref;
 
-  Future<void> getProductById(int id) async {
+  Future<ProductModel> getProductById(int id) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(
       () async => repository.getProductById(id),
     );
+
+    return state.asData!.value;
   }
 }
 
