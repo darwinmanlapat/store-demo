@@ -142,7 +142,10 @@ class ProductScreen extends HookConsumerWidget {
                       Timer(const Duration(seconds: 1), () {
                         isButtonClicked.value = false;
                         const snackBar = SnackBar(
-                          content: Text('Item added to cart'),
+                          content: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 24),
+                            child: Text('Item added to cart'),
+                          ),
                           backgroundColor: Color(0xFF404453),
                           showCloseIcon: true,
                           closeIconColor: Color(0xFF05B89D),
@@ -162,7 +165,11 @@ class ProductScreen extends HookConsumerWidget {
       error: (e, s) => const Center(
         child: Text('Something went wrong. Please try again.'),
       ),
-      loading: () => const SizedBox.shrink(),
+      loading: () => const Center(
+        child: CircularProgressIndicator(
+          color: Color(0xFF05B89D),
+        ),
+      ),
     );
   }
 }

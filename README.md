@@ -40,6 +40,11 @@
 
 - To run the app, run flutter run. If you are using Visual Studio Code, go to Run and Debug and choose the [launch configuration](https://code.visualstudio.com/docs/editor/debugging#_launch-configurations).
 
+- To Login, use any users from this api https://fakestoreapi.com/users or you can use the credentials below
+
+- username: mor_2314
+- password: 83r5^_
+
 <br><hr><br>
 
 ## **Folder Structure**

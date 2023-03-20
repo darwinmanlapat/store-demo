@@ -34,7 +34,7 @@ class HomeScreen extends HookConsumerWidget {
                 height: 240,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                     image: AssetImage('assets/woman-with-shopping-bags.jpg'),
                   ),
                   boxShadow: [
